@@ -1,76 +1,37 @@
 package KingsleyGate.StepDef;
 
-import TestComponents.HooksClass;
-import KingsleyGate.StepDef.Pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.WebDriver;
+import KingsleyGate.StepDef.Pages.LoginPage;
+import TestComponents.HooksClass;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 public class Login_StepDefinition {
 
-    WebDriver driver;
     LoginPage loginPage;
+    Properties prop;
 
     @Given("User landed on Banking App")
     public void user_landed_on_banking_app() {
-        driver = HooksClass.getDriver();
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(HooksClass.getDriver());
     }
 
     @Then("User logged in with valid email and password")
-    public void user_logged_in_with_valid_email_and_password() throws IOException {
+    public void user_logged_in_with_valid_email_and_password() {
 
-        Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream(
-                System.getProperty("user.dir") + "/src/test/resources/Global.properties"
-        );
-        prop.load(fis);
+        prop = new Properties();
+        try {
+            prop.load(getClass().getClassLoader()
+                    .getResourceAsStream("Global.properties"));
+        } catch (Exception e) {
+            throw new RuntimeException("Global.properties not found", e);
+        }
 
         String email = prop.getProperty("user_email");
         String password = prop.getProperty("user_password");
 
-        loginPage.Logging_Ignyte_App(email, password);
+        // ✅ THIS NOW EXISTS
+        loginPage.login(email, password);
     }
 }
-
-
-
-
-// // src\test\java\KingsleyGate\StepDef\Login_StepDefinition.java
-// package KingsleyGate.StepDef;
-
-// import TestComponents.HooksClass;
-// import io.cucumber.java.en.Given;
-// import io.cucumber.java.en.Then;
-// import KingsleyGate.StepDef.Pages.LoginPage;
-// import java.io.FileInputStream;
-// import java.io.IOException;
-// import java.util.Properties;
-
-// public class Login_StepDefinition
-// {
-//     LoginPage loginPage;
-    
-//     @Given("User landed on Banking App")
-//     public void user_landed_on_ignyte_app() throws IOException
-//     {
-//     	System.out.println("Inside User landed on Ignyte App - sted definition  ::::::::::::::::::::::");
-//     	loginPage = HooksClass.launchApp();         
-//     }
-//     @Then("^User logged in with valid email and password$")
-//     public void user_logged_in_with_valid_email_and_password() throws IOException 
-//     {
-//         Properties prop = new Properties();
-//         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/Resources/Global.properties");
-//         prop.load(fis);
-
-//         String email = prop.getProperty("user_email");
-//         String password = prop.getProperty("user_password");
-
-//         loginPage.Logging_Ignyte_App(email, password);
-//     }
-// }

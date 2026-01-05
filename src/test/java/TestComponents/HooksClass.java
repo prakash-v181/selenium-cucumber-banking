@@ -14,12 +14,9 @@ public class HooksClass {
 
     @Before
     public void setUp() {
-
         EdgeOptions options = new EdgeOptions();
 
-        String headless = System.getProperty("headless", "true");
-
-        if (headless.equalsIgnoreCase("true")) {
+        if (Boolean.parseBoolean(System.getProperty("headless", "true"))) {
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             options.addArguments("--window-size=1920,1080");
@@ -27,7 +24,10 @@ public class HooksClass {
 
         driver = new EdgeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://parabank.parasoft.com/parabank/register.htm");
+        driver.get(System.getProperty(
+                "url",
+                "https://parabank.parasoft.com/parabank/register.htm"
+        ));
     }
 
     @After
