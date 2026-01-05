@@ -15,8 +15,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
+          distribution: 'temurin'
           java-version: '17'
 
-      - name: Run Selenium Tests
-        run: mvn clean test -Dheadless=true
+      - name: Run Tests
+        run: mvn clean test

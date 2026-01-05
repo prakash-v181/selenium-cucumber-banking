@@ -18,14 +18,14 @@
 
     <dependencies>
 
-        <!-- Selenium -->
+        <!-- ✅ Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- TestNG -->
+        <!-- ✅ TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -33,7 +33,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Cucumber -->
+        <!-- ✅ Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -46,14 +46,14 @@
             <version>${cucumber.version}</version>
         </dependency>
 
-        <!-- Extent Reports -->
+        <!-- ✅ Extent Reports -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extentreports-cucumber7-adapter</artifactId>
             <version>1.7.0</version>
         </dependency>
 
-        <!-- Apache POI -->
+        <!-- ✅ Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -66,7 +66,15 @@
             <version>5.2.2</version>
         </dependency>
 
-        <!-- Logging -->
+        <!-- ✅ Lombok (EXPLICIT FIX) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ✅ Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -78,17 +86,21 @@
     <build>
         <plugins>
 
-            <!-- Compiler -->
+            <!-- ✅ Compiler Plugin (Java 17 + Lombok SAFE) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
                     <release>17</release>
+                    <compilerArgs>
+                        <arg>--add-opens</arg>
+                        <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
-            <!-- Surefire -->
+            <!-- ✅ Surefire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
