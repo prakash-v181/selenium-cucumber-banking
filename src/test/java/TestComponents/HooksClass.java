@@ -6,43 +6,38 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
-import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.Properties;
+import java.io.FileInputStream;
 
 public class HooksClass {
 
     private static WebDriver driver;
-    private Properties prop;
 
     @Before
-    public void setUp() {
-        try {
-            prop = new Properties();
-            FileInputStream fis = new FileInputStream(
-                    System.getProperty("user.dir") + "/src/test/resources/Global.properties"
-            );
-            prop.load(fis);
+    public void setUp() throws Exception {
 
-            String headless = prop.getProperty("headless");
-            String url = prop.getProperty("url");
+        Properties prop = new Properties();
+        FileInputStream fis = new FileInputStream(
+                System.getProperty("user.dir") + "/src/main/java/Resources/Global.properties"
+        );
+        prop.load(fis);
 
-            EdgeOptions options = new EdgeOptions();
+        String headless = prop.getProperty("headless");
+        String url = prop.getProperty("url");
 
-            if (headless.equalsIgnoreCase("true")) {
-                options.addArguments("--headless=new");
-                options.addArguments("--disable-gpu");
-                options.addArguments("--window-size=1920,1080");
-            }
+        EdgeOptions options = new EdgeOptions();
 
-            driver = new EdgeDriver(options);
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            driver.get(url);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if ("true".equalsIgnoreCase(headless)) {
+            options.addArguments("--headless=new");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1920,1080");
         }
+
+        driver = new EdgeDriver(options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get(url);
     }
 
     @After
