@@ -3,7 +3,7 @@ Feature: Banking application
 
   Background:
     Given User landed on Banking App
-    Then User logged in with valid email and password
+    And User logged in with valid email and password
 
   @UpdateInfo
   Scenario: Update contact information
