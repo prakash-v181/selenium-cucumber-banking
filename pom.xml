@@ -18,14 +18,14 @@
 
     <dependencies>
 
-        <!-- ✅ Selenium -->
+        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- ✅ TestNG -->
+        <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -33,7 +33,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ✅ Cucumber -->
+        <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -46,14 +46,14 @@
             <version>${cucumber.version}</version>
         </dependency>
 
-        <!-- ✅ Extent Reports -->
+        <!-- Extent Reports -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extentreports-cucumber7-adapter</artifactId>
             <version>1.7.0</version>
         </dependency>
 
-        <!-- ✅ Apache POI -->
+        <!-- Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -66,7 +66,7 @@
             <version>5.2.2</version>
         </dependency>
 
-        <!-- ✅ Lombok (EXPLICIT FIX) -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -74,11 +74,27 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- ✅ Logging -->
+        <!-- Logging: keep logback (existing) and add log4j-core to satisfy some libs -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.4.14</version>
+        </dependency>
+
+        <!-- WebDriverManager for driver management in CI -->
+        <dependency>
+          <groupId>io.github.bonigarcia</groupId>
+          <artifactId>webdrivermanager</artifactId>
+          <version>5.4.1</version>
+          <scope>test</scope>
+        </dependency>
+
+        <!-- Add log4j-core so Log4j2 finds an implementation (removes warning) -->
+        <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
+          <version>2.20.0</version>
+          <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -86,7 +102,7 @@
     <build>
         <plugins>
 
-            <!-- ✅ Compiler Plugin (Java 17 + Lombok SAFE) -->
+            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -100,7 +116,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ✅ Surefire -->
+            <!-- Surefire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
