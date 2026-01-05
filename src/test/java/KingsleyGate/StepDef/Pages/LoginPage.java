@@ -1,3 +1,4 @@
+// src/test/java/KingsleyGate/StepDef/Pages/LoginPage.java
 package KingsleyGate.StepDef.Pages;
 
 import org.openqa.selenium.WebDriver;
@@ -9,30 +10,25 @@ public class LoginPage {
 
     WebDriver driver;
 
-    // Locators
     @FindBy(name = "username")
-    private WebElement usernameInput;
+    WebElement emailInput;
 
     @FindBy(name = "password")
-    private WebElement passwordInput;
+    WebElement passwordInput;
 
     @FindBy(xpath = "//input[@value='Log In']")
-    private WebElement loginButton;
+    WebElement loginBtn;
 
-    // Constructor
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    // ✅ REQUIRED METHOD (THIS WAS MISSING)
-    public void login(String username, String password) {
-        usernameInput.clear();
-        usernameInput.sendKeys(username);
-
+    public void Logging_Ignyte_App(String email, String password) {
+        emailInput.clear();
+        emailInput.sendKeys(email);
         passwordInput.clear();
         passwordInput.sendKeys(password);
-
-        loginButton.click();
+        loginBtn.click();
     }
 }
