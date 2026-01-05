@@ -21,6 +21,12 @@ public class Login_StepDefinition {
         loginPage = new LoginPage(driver);
     }
 
+    // 🔑 Alias for feature file mismatch
+    @Given("User landed on Ignyte App")
+    public void user_landed_on_ignyte_app() {
+        user_landed_on_banking_app();
+    }
+
     @Then("User logged in with valid email and password")
     public void user_logged_in_with_valid_email_and_password() throws IOException {
 
