@@ -1,9 +1,0 @@
-KingsleyGate\StepDef\RequestLoan_StepDefinition.class
-KingsleyGate\StepDef\BillPay_StepDefinition.class
-KingsleyGate\StepDef\Registation_StepDefinition.class
-Runner\TestRunner.class
-KingsleyGate\StepDef\Account_overView_StepDefinition.class
-TestComponents\HooksClass.class
-KingsleyGate\StepDef\Open_New_Account_StepDefinition.class
-KingsleyGate\StepDef\UpdateInformation_StepDefinition.class
-KingsleyGate\StepDef\Login_StepDefinition.class
