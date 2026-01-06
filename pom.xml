@@ -10,13 +10,14 @@
     <artifactId>banking-project</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- Properties -->
+    <!-- ================= PROPERTIES ================= -->
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipUITests>false</skipUITests>
     </properties>
 
+    <!-- ================= DEPENDENCIES ================= -->
     <dependencies>
 
         <!-- Selenium -->
@@ -72,10 +73,21 @@
 
     </dependencies>
 
+    <!-- ================= BUILD ================= -->
     <build>
         <plugins>
 
-            <!-- CI-safe test execution -->
+            <!-- Compiler (JDK 17 safe for CI) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire (CI-safe test execution) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
