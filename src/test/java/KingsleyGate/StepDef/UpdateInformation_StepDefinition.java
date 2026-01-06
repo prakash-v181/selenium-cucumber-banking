@@ -1,3 +1,4 @@
+// src\test\java\KingsleyGate\StepDef\UpdateInformation_StepDefinition.java
 package KingsleyGate.StepDef;
 
 import java.io.FileNotFoundException;
@@ -5,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import KingsleyGate.StepDef.Pages.UpdateInformationPage;
+import TestComponents.DriverFactory;
 import TestComponents.HooksClass;
 import UtilityFile.ExcelReader;
 import io.cucumber.java.Before;
@@ -39,7 +41,7 @@ public class UpdateInformation_StepDefinition
     @Then("User navigates to update contact information page")
     public void user_navigates_to_page() throws InterruptedException
     {
-    	updateInformationPage = new UpdateInformationPage(hooksClass.getDriver());
+    	updateInformationPage = new UpdateInformationPage(DriverFactory.getDriver());
 		updateInformationPage.Navigating_To_UpdateInfoPage();
     }
 

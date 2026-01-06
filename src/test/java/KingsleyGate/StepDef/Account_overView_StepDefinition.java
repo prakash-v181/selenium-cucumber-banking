@@ -1,3 +1,4 @@
+// src\test\java\KingsleyGate\StepDef\Account_overView_StepDefinition.java
 package KingsleyGate.StepDef;
 
 import java.io.FileNotFoundException;
@@ -8,6 +9,7 @@ import java.util.Map;
 import KingsleyGate.StepDef.Pages.Account_OverviewPage;
 import KingsleyGate.StepDef.Pages.RequestLoanPage;
 import KingsleyGate.StepDef.Pages.UpdateInformationPage;
+import TestComponents.DriverFactory;
 import TestComponents.HooksClass;
 import UtilityFile.ExcelReader;
 import io.cucumber.java.Before;
@@ -42,7 +44,7 @@ public class Account_overView_StepDefinition
     @Then("^User navigates to Accunt Over View page$")
     public void user_navigates_to_Loanpage() throws InterruptedException
     {
-    	account_OverviewPage = new Account_OverviewPage(hooksClass.getDriver());
+    	account_OverviewPage = new Account_OverviewPage(DriverFactory.getDriver());
     	account_OverviewPage.Navigating_To_Acc_Overview_Page();
     }
 

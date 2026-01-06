@@ -1,18 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>KingsleyGate</artifactId>
+    <groupId>com.banking</groupId>
+    <artifactId>banking-project</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>17</java.version>
-        <cucumber.version>7.22.0</cucumber.version>
-        <selenium.version>4.31.0</selenium.version>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -22,79 +21,52 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
-
-        <!-- TestNG -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.9.0</version>
-            <scope>test</scope>
+            <version>4.16.1</version>
         </dependency>
 
         <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
+            <version>7.14.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
+            <version>7.14.0</version>
+            <scope>test</scope>
         </dependency>
 
-        <!-- Extent Reports -->
+        <!-- TestNG -->
         <dependency>
-            <groupId>tech.grasshopper</groupId>
-            <artifactId>extentreports-cucumber7-adapter</artifactId>
-            <version>1.7.0</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.8.0</version>
+            <scope>test</scope>
         </dependency>
 
-        <!-- Apache POI -->
+        <!-- Apache POI (Excel) -->
+        <!-- Compile scope because ExcelReader is in src/main/java -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>5.2.2</version>
+            <version>5.2.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>5.2.2</version>
+            <version>5.2.5</version>
         </dependency>
 
-        <!-- Lombok -->
+        <!-- WebDriverManager -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Logging: keep logback (existing) and add log4j-core to satisfy some libs -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.14</version>
-        </dependency>
-
-        <!-- WebDriverManager for driver management in CI -->
-        <dependency>
-          <groupId>io.github.bonigarcia</groupId>
-          <artifactId>webdrivermanager</artifactId>
-          <version>5.4.1</version>
-          <scope>test</scope>
-        </dependency>
-
-        <!-- Add log4j-core so Log4j2 finds an implementation (removes warning) -->
-        <dependency>
-          <groupId>org.apache.logging.log4j</groupId>
-          <artifactId>log4j-core</artifactId>
-          <version>2.20.0</version>
-          <scope>test</scope>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.6.3</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -102,21 +74,17 @@
     <build>
         <plugins>
 
-            <!-- Compiler Plugin -->
+            <!-- ✅ FIX: Prevent Windows file-lock failure -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
                 <configuration>
-                    <release>17</release>
-                    <compilerArgs>
-                        <arg>--add-opens</arg>
-                        <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                    </compilerArgs>
+                    <failOnError>false</failOnError>
                 </configuration>
             </plugin>
 
-            <!-- Surefire -->
+            <!-- Test execution -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

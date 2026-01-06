@@ -1,3 +1,4 @@
+// src\test\java\KingsleyGate\StepDef\Registation_StepDefinition.java
 package KingsleyGate.StepDef;
 
 import java.io.FileNotFoundException;
@@ -6,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import KingsleyGate.StepDef.Pages.BillPayPage;
 import KingsleyGate.StepDef.Pages.Registation_Page;
+import TestComponents.DriverFactory;
 import TestComponents.HooksClass;
 import UtilityFile.ExcelReader;
 import io.cucumber.java.Before;
@@ -39,7 +41,7 @@ public class Registation_StepDefinition
     @Then("User navigates to Registation information page")
     public void user_navigates_to_page() throws InterruptedException
     {
-    	registation_Page = new Registation_Page(hooksClass.getDriver());
+    	registation_Page = new Registation_Page(DriverFactory.getDriver());
     	registation_Page.Navigating_To_Registation_Page();
     }
 

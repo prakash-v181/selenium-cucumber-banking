@@ -1,3 +1,4 @@
+// src\test\java\KingsleyGate\StepDef\Open_New_Account_StepDefinition.java
 package KingsleyGate.StepDef;
 
 import java.io.FileNotFoundException;
@@ -6,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import KingsleyGate.StepDef.Pages.Open_New_Account_Page;
+import TestComponents.DriverFactory;
 import TestComponents.HooksClass;
 import UtilityFile.ExcelReader;
 import io.cucumber.java.Before;
@@ -39,7 +41,7 @@ public class Open_New_Account_StepDefinition
     @Then("^User navigates to Open New Account Page$")
     public void user_navigates_to_Loanpage() throws InterruptedException
     {
-    	open_New_Account_Page = new Open_New_Account_Page(hooksClass.getDriver());
+    	open_New_Account_Page = new Open_New_Account_Page(DriverFactory.getDriver());
     	open_New_Account_Page.Navigating_To_Open_new_account();
     }
 

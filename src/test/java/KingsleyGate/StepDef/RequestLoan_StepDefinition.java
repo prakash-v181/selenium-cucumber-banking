@@ -1,3 +1,4 @@
+// src\test\java\KingsleyGate\StepDef\RequestLoan_StepDefinition.java
 package KingsleyGate.StepDef;
 
 import java.io.FileNotFoundException;
@@ -7,6 +8,7 @@ import java.util.Map;
 
 import KingsleyGate.StepDef.Pages.RequestLoanPage;
 import KingsleyGate.StepDef.Pages.UpdateInformationPage;
+import TestComponents.DriverFactory;
 import TestComponents.HooksClass;
 import UtilityFile.ExcelReader;
 import io.cucumber.java.Before;
@@ -41,7 +43,7 @@ public class RequestLoan_StepDefinition
     @Then("^User navigates to Request Loan page$")
     public void user_navigates_to_Loanpage() throws InterruptedException
     {
-    	requestLoanPage = new RequestLoanPage(hooksClass.getDriver());
+    	requestLoanPage = new RequestLoanPage(DriverFactory.getDriver());
     	requestLoanPage.Navigating_To_RequestLoanPage();
     }
 

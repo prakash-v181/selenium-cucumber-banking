@@ -1,3 +1,4 @@
+// src\test\java\KingsleyGate\StepDef\BillPay_StepDefinition.java
 package KingsleyGate.StepDef;
 
 import java.io.FileNotFoundException;
@@ -5,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import KingsleyGate.StepDef.Pages.BillPayPage;
+import TestComponents.DriverFactory;
 import TestComponents.HooksClass;
 import UtilityFile.ExcelReader;
 import io.cucumber.java.Before;
@@ -38,7 +40,7 @@ public class BillPay_StepDefinition
     @Then("User navigates to bill pay information page")
     public void user_navigates_to_page() throws InterruptedException
     {
-    	billPayPage = new BillPayPage(hooksClass.getDriver());
+    	billPayPage = new BillPayPage(DriverFactory.getDriver());
     	billPayPage.Navigating_To_BillPayPage();
     }
 

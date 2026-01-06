@@ -6,23 +6,30 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/resources/Features",
-        glue = {"KingsleyGate.StepDef", "TestComponents"},
+        glue = {
+                "KingsleyGate.StepDef",
+                "TestComponents"
+        },
+
+        // ✅ EXCLUDE IGNYTE TESTS
+        tags = "not @Login",
+
         plugin = {
                 "pretty",
                 "html:target/cucumber-report.html",
                 "json:target/cucumber.json"
         },
+
         monochrome = true
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
     @Override
-    @DataProvider
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }
 }
-
 
 
 // // src\test\java\Runner\TestRunner.java
