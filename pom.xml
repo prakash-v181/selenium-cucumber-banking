@@ -10,9 +10,11 @@
     <artifactId>banking-project</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- ✅ Properties -->
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <skipUITests>false</skipUITests>
     </properties>
 
     <dependencies>
@@ -47,8 +49,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Apache POI (Excel) -->
-        <!-- Compile scope because ExcelReader is in src/main/java -->
+        <!-- Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -74,7 +75,7 @@
     <build>
         <plugins>
 
-            <!-- ✅ FIX: Prevent Windows file-lock failure -->
+            <!-- Windows clean lock fix -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -84,11 +85,14 @@
                 </configuration>
             </plugin>
 
-            <!-- Test execution -->
+            <!-- ✅ CI-safe test execution -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+                <configuration>
+                    <skipTests>${skipUITests}</skipTests>
+                </configuration>
             </plugin>
 
         </plugins>
